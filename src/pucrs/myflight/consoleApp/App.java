@@ -36,10 +36,10 @@ public class App {
 		gAeroportos.adicionar(new Aeroporto("MIA", "Miami International Apt", new Geo(25.7933, -80.2906)));
 
 		// Rotas
-		gRotas.adicionar(new Rota(gCias.buscaPorCodigo("G3"), gAeroportos.buscaPorCodigo("GRU"), gAeroportos.buscaPorCodigo("POA"), gAeronaves.buscaPorCodigo("738")));
-		gRotas.adicionar(new Rota(gCias.buscaPorCodigo("G3"), gAeroportos.buscaPorCodigo("POA"), gAeroportos.buscaPorCodigo("GRU"), gAeronaves.buscaPorCodigo("738")));
-		gRotas.adicionar(new Rota(gCias.buscaPorCodigo("TP"), gAeroportos.buscaPorCodigo("MIA"), gAeroportos.buscaPorCodigo("LIS"), gAeronaves.buscaPorCodigo("332")));
-		gRotas.adicionar(new Rota(gCias.buscaPorCodigo("JJ"), gAeroportos.buscaPorCodigo("GRU"), gAeroportos.buscaPorCodigo("MIA"), gAeronaves.buscaPorCodigo("320")));
+		gRotas.adicionar(new Rota(gCias.buscaPorCodigo("G3"), gAeroportos.buscaPorCodigo("GRU"), gAeroportos.buscaPorCodigo("POA"), gAeronaves.buscaPorCodigo("733")));
+		gRotas.adicionar(new Rota(gCias.buscaPorCodigo("G3"), gAeroportos.buscaPorCodigo("POA"), gAeroportos.buscaPorCodigo("GRU"), gAeronaves.buscaPorCodigo("733")));
+		gRotas.adicionar(new Rota(gCias.buscaPorCodigo("TP"), gAeroportos.buscaPorCodigo("MIA"), gAeroportos.buscaPorCodigo("LIS"), gAeronaves.buscaPorCodigo("380")));
+		gRotas.adicionar(new Rota(gCias.buscaPorCodigo("JJ"), gAeroportos.buscaPorCodigo("GRU"), gAeroportos.buscaPorCodigo("MIA"), gAeronaves.buscaPorCodigo("764")));
 
 		// Vôos
 		gVoos.adicionar(new Voo(gRotas.buscaPorHash("G3:POA-GRU"), LocalDateTime.of(2016, 8, 10, 8, 0), Duration.ofMinutes(90)/* 1:30 */, Voo.Status.ATRASADO));
@@ -72,5 +72,7 @@ public class App {
 		gRotas.ordenaCia();
 		System.out.println(gRotas.listarTudo());
 
+		VooEscalas vooEscalas = new VooEscalas(gRotas.buscaPorHash("G3:POA-GRU"), gRotas.buscaPorHash("JJ:GRU-MIA"), LocalDateTime.of(2020, 5, 20, 16, 0), Duration.ofMinutes(210)/* 3:30 */, VooEscalas.Status.ATRASADO);
+		System.out.println(vooEscalas);
 	}
 }
