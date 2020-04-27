@@ -19,7 +19,7 @@ public class App {
 		// Companhias Aéreas
 		gCias.adicionar(new CiaAerea("JJ", "LATAM Linhas Aéreas"));
 		gCias.adicionar(new CiaAerea("G3", "Gol Linhas Aéreas"));
-		gCias.adicionar(new CiaAerea("SA", "TPTAP Portugal"));
+		gCias.adicionar(new CiaAerea("TP", "TAP Portugal"));
 		gCias.adicionar(new CiaAerea("AD", "Azul Linhas Aéreas"));
 
 		// Aeronaves
@@ -38,18 +38,39 @@ public class App {
 		// Rotas
 		gRotas.adicionar(new Rota(gCias.buscaPorCodigo("G3"), gAeroportos.buscaPorCodigo("GRU"), gAeroportos.buscaPorCodigo("POA"), gAeronaves.buscaPorCodigo("738")));
 		gRotas.adicionar(new Rota(gCias.buscaPorCodigo("G3"), gAeroportos.buscaPorCodigo("POA"), gAeroportos.buscaPorCodigo("GRU"), gAeronaves.buscaPorCodigo("738")));
-		gRotas.adicionar(new Rota(gCias.buscaPorCodigo("SA"), gAeroportos.buscaPorCodigo("MIA"), gAeroportos.buscaPorCodigo("LIS"), gAeronaves.buscaPorCodigo("332")));
+		gRotas.adicionar(new Rota(gCias.buscaPorCodigo("TP"), gAeroportos.buscaPorCodigo("MIA"), gAeroportos.buscaPorCodigo("LIS"), gAeronaves.buscaPorCodigo("332")));
 		gRotas.adicionar(new Rota(gCias.buscaPorCodigo("JJ"), gAeroportos.buscaPorCodigo("GRU"), gAeroportos.buscaPorCodigo("MIA"), gAeronaves.buscaPorCodigo("320")));
 
 		// Vôos
 		gVoos.adicionar(new Voo(gRotas.buscaPorHash("G3:POA-GRU"), LocalDateTime.of(2016, 8, 10, 8, 0), Duration.ofMinutes(90)/* 1:30 */, Voo.Status.ATRASADO));
 		gVoos.adicionar(new Voo(gRotas.buscaPorHash("G3:GRU-POA"), LocalDateTime.of(2016, 8, 10, 15, 0), Duration.ofMinutes(120)/* 2:00 */, Voo.Status.CONFIRMADO));
 		gVoos.adicionar(new Voo(gRotas.buscaPorHash("JJ:GRU-MIA"), LocalDateTime.of(2016, 8, 15, 12, 0), Duration.ofMinutes(120)/* 2:00 */, Voo.Status.CANCELADO));
+		gVoos.adicionar(new Voo(gRotas.buscaPorHash("TP:MIA-LIS"), Duration.ofMinutes(90)/* 1:30 */, Voo.Status.CONFIRMADO));
 
 		System.out.println(gCias);
 		System.out.println(gAeronaves);
 		System.out.println(gAeroportos);
 		System.out.println(gRotas);
 		System.out.println(gVoos);
+
+		double distanciaPoaGruClasse = Geo.distancia(gAeroportos.buscaPorCodigo("POA").getGeo(), gAeroportos.buscaPorCodigo("GRU").getGeo());
+		System.out.println("Distancia metodo classe = " + distanciaPoaGruClasse);
+
+		double distanciaPoaGru = gAeroportos.buscaPorCodigo("POA").getGeo().distancia(gAeroportos.buscaPorCodigo("GRU").getGeo());
+		System.out.println("Distancia= " + distanciaPoaGru);
+
+		// Testes Comparable
+		System.out.println(gAeronaves.listarTudo());
+		gAeronaves.ordenaDescricao();
+		System.out.println(gAeronaves.listarTudo());
+
+		System.out.println(gAeroportos.listarTudo());
+		gAeroportos.ordenaNome();
+		System.out.println(gAeroportos.listarTudo());
+
+		System.out.println(gRotas.listarTudo());
+		gRotas.ordenaCia();
+		System.out.println(gRotas.listarTudo());
+
 	}
 }

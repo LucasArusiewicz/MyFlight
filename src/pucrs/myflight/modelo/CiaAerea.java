@@ -2,13 +2,20 @@ package pucrs.myflight.modelo;
 
 import java.util.Objects;
 
-public class CiaAerea {
+public class CiaAerea implements Contavel {
+    private static int totalCias = 0;
     private String codigo;
     private String nome;
 
     public CiaAerea(String codigo, String nome) {
         this.codigo = codigo;
         this.nome = nome;
+        totalCias++;
+    }
+
+    @Override
+    public int getTotalContador() {
+        return totalCias;
     }
 
     public String getCodigo() {

@@ -1,6 +1,7 @@
 package pucrs.myflight.modelo;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class GerenciadorAeronaves {
 
@@ -43,6 +44,10 @@ public class GerenciadorAeronaves {
             }
         }
         return null;
+    }
+
+    public void ordenaDescricao() {
+        Collections.sort(aeronaves);
     }
 
     @Override
